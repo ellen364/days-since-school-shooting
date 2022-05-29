@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Days since fatal school shooting</title>
+    <meta
+      name="description"
+      content="The number of days since a school shooting."
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <h1 class="mb-3">Days since fatal school shooting</h1>
+
+    <div class="country-cards">
+      <div class="country-card">
+        <p class="text-lg">United States</p>
+        <p class="text-lg" id="usa-days"></p>
+        <p>
+          <a
+            href="https://en.wikipedia.org/wiki/Robb_Elementary_School_shooting"
+            >Robb Elementary school</a
+          >
+        </p>
+        <p>24 May 2022</p>
+      </div>
+      <div class="country-card">
+        <p class="text-lg">Canada</p>
+        <p class="text-lg" id="canada-days"></p>
+        <p>
+          <a
+            href="https://en.wikipedia.org/wiki/David_and_Mary_Thomson_Collegiate_Institute#Incidents"
+            >David and Mary Thomson College Institute</a
+          >
+        </p>
+        <p>14 February 2022</p>
+      </div>
+      <div class="country-card">
+        <p class="text-lg">United Kingdom</p>
+        <p class="text-lg" id="uk-days"></p>
+        <p>
+          <a href="https://en.wikipedia.org/wiki/Dunblane_massacre"
+            >Dunblane Primary School</a
+          >
+        </p>
+        <p>13 March 1996</p>
+      </div>
+      <div class="country-card">
+        <p class="text-lg">Australia</p>
+        <p class="text-lg" id="australia-days"></p>
+        <p>
+          <a href="https://en.wikipedia.org/wiki/Monash_University_shooting"
+            >Monash University</a
+          >
+        </p>
+        <p>21 October 2002</p>
+      </div>
+      <div class="country-card">
+        <p class="text-lg">New Zealand</p>
+        <p class="text-lg" id="nz-days"></p>
+        <p>
+          <a href="https://en.wikipedia.org/wiki/Waikino_school_shooting"
+            >Waikano School</a
+          >
+        </p>
+        <p>19 October 1923</p>
+      </div>
+    </div>
+
+    <script>
+      let recentShooting = false;
+      const shootingDates = {
+        usa: "24 May 2022",
+        canada: "14 February 2022",
+        uk: "13 March 1996",
+        australia: "21 October 2002",
+        nz: "19 October 1923",
+      };
+      // Today midnight (days elapsed will be defined as calendar days elapsed)
+      const today = new Date().setHours(0,0,0,0);
+
+      for (country in shootingDates) {
+        const shootingDate = Date.parse(shootingDates[country]);
+        const days = daysElapsed(shootingDate, today);
+        const daysText = `${days.toLocaleString()} days`;
+        document.getElementById(`${country}-days`).innerText = daysText;
+
+        if (days < 6) {
+            recentShooting = true;
+        }
+      }
+
+      if (recentShooting) {
+          setDarkTheme();
+      }
+
+      function daysElapsed(startDate, endDate) {
+        const ms_per_day = 1000 * 60 * 60 * 24;
+        return Math.ceil((endDate - startDate) / ms_per_day);
+      }
+
+      function setDarkTheme() {
+        document.documentElement.classList.remove("light");
+        document.documentElement.classList.add("dark");
+      }
+    </script>
+  </body>
+</html>

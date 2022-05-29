@@ -1,0 +1,75 @@
+/* Base styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+:root,
+:root.light {
+  --background: #fbfcfa;
+  --text-main: #1b1b1b;
+  --borders: #a9b1ba;
+  --links: #0076d1;
+}
+:root.dark {
+  --background: #21252b;
+  --text-main: #ffffff;
+  --borders: #3c4043;
+  --links: #8ab4f8;
+}
+body {
+  font-family: system-ui, -apple-system, "Segoe UI Emoji", "Apple Color Emoji",
+    "Noto Color Emoji", sans-serif;
+  color: var(--text-main);
+  background-color: var(--background);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 0 auto; /* Only needed for larger screens? */
+  padding: 0 1rem; /* Keep a little space at the edge of the text, even when screens v small. */
+}
+@media (min-width: 35em) {
+  body {
+    width: 75%;
+  }
+}
+
+/* Typography
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+h1 {
+  text-align: center;
+}
+a {
+  color: var(--links);
+}
+
+/* Utilities
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.mt-2 {
+  margin-top: 2rem;
+}
+.mb-3 {
+  margin-bottom: 3rem;
+}
+.text-lg {
+  font-size: 1.1rem;
+}
+
+/* Specific styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.country-cards {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-rows: auto;
+  gap: 1em;
+}
+.country-card {
+  display: grid;
+  border: 0.15em solid var(--borders);
+  border-radius: 0.4em;
+  padding: 1.5em 4em;
+}
+.info {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
